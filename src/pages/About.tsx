@@ -8,6 +8,7 @@ interface Project {
   tags: string[];
   github: string;
   demo?: string;
+  image: string;
 }
 
 const projects: Project[] = [
@@ -17,18 +18,21 @@ const projects: Project[] = [
     tags: ['React', 'Vite', 'Node.js', 'OpenWeather API', 'Tailwind CSS'],
     github: 'https://github.com/yourusername/weather-dashboard',
     demo: 'https://weather-dashboard.netlify.app',
+    image: '/images/portfolio/weather.png'
   },
   {
     title: 'README Generator',
     description: 'CLI tool that generates professional README files using AI. Streamlines documentation process for developers.',
     tags: ['Node.js', 'OpenAI API', 'CLI', 'JavaScript'],
     github: 'https://github.com/yourusername/readme-generator',
+    image: '/images/portfolio/readme.png'
   },
   {
     title: 'Vehicle Builder',
     description: 'Command-line interface for customizing vehicle configurations. Built with modern JavaScript and clean architecture.',
     tags: ['JavaScript', 'Node.js', 'CLI', 'Clean Architecture'],
     github: 'https://github.com/yourusername/vehicle-builder',
+    image: '/images/portfolio/vehicle.png'
   },
   {
     title: 'NFL Prediction App',
@@ -36,6 +40,7 @@ const projects: Project[] = [
     tags: ['React', 'Node.js', 'Supabase', 'Analytics API'],
     github: 'https://github.com/yourusername/nfl-predictions',
     demo: 'https://nfl-predictions.netlify.app',
+    image: '/images/portfolio/sports.png'
   },
   {
     title: 'Pastey',
@@ -43,6 +48,7 @@ const projects: Project[] = [
     tags: ['React', 'Node.js', 'Socket.io', 'Express'],
     github: 'https://github.com/yourusername/pastey',
     demo: 'https://pastey.netlify.app',
+    image: '/images/portfolio/pastey.png'
   },
   {
     title: 'TransitTrends Analytics',
@@ -50,6 +56,7 @@ const projects: Project[] = [
     tags: ['React', 'Node.js', 'Supabase'],
     github: '#',
     demo: '#',
+    image: '/images/portfolio/driverapp.png'
   },
 ];
 
@@ -122,6 +129,7 @@ const About = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
               <div key={project.title} className="bg-slate-900/50 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-transform">
+                <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                   <p className="text-gray-400 mb-4">{project.description}</p>
