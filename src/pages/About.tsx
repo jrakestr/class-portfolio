@@ -91,27 +91,22 @@ const About = () => {
                 through innovative AI and IoT solutions. My expertise in data aggregation and real-time tracking systems 
                 helps create more efficient and accessible transportation networks.
               </p>
-              <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Technical Skills</h2>
-                
-                <div className="mb-6">
-                  <h3 className="text-xl font-semibold mb-2">Frontend Development</h3>
-                  <p className="text-gray-600">React, TypeScript, Tailwind CSS, Vite, JavaScript</p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-slate-800/50 p-4 rounded-lg">
+                  <h3 className="font-semibold mb-2 text-emerald-400">AI & Machine Learning</h3>
+                  <p className="text-sm text-gray-400">TensorFlow, PyTorch, Natural Language Processing</p>
                 </div>
-                
-                <div className="mb-6">
-                  <h3 className="text-xl font-semibold mb-2">Backend Development</h3>
-                  <p className="text-gray-600">Node.js, RESTful APIs, Supabase, PostgreSQL, Express.js</p>
+                <div className="bg-slate-800/50 p-4 rounded-lg">
+                  <h3 className="font-semibold mb-2 text-emerald-400">IoT Development</h3>
+                  <p className="text-sm text-gray-400">Sensor Integration, Real-time Data Processing, Edge Computing</p>
                 </div>
-                
-                <div className="mb-6">
-                  <h3 className="text-xl font-semibold mb-2">DevOps & Tools</h3>
-                  <p className="text-gray-600">Git, CI/CD, System Architecture, API Development</p>
+                <div className="bg-slate-800/50 p-4 rounded-lg">
+                  <h3 className="font-semibold mb-2 text-emerald-400">Full Stack Development</h3>
+                  <p className="text-sm text-gray-400">React, Node.js, Python, Cloud Architecture</p>
                 </div>
-
-                <div className="mb-6">
-                  <h3 className="text-xl font-semibold mb-2">Data & Analytics</h3>
-                  <p className="text-gray-600">Data Aggregation, Predictive Analytics, Machine Learning APIs</p>
+                <div className="bg-slate-800/50 p-4 rounded-lg">
+                  <h3 className="font-semibold mb-2 text-emerald-400">Data Engineering</h3>
+                  <p className="text-sm text-gray-400">Big Data Analytics, ETL Pipelines, Data Visualization</p>
                 </div>
               </div>
             </div>
