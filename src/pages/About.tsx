@@ -2,39 +2,29 @@ import React, { useState } from 'react';
 import { Github, ExternalLink } from 'lucide-react';
 import ComingSoonPopup from '../components/ComingSoonPopup';
 
-const skills = [
-  {
-    name: 'AI & Machine Learning',
-    description: 'TensorFlow, PyTorch, Natural Language Processing',
-  },
-  {
-    name: 'IoT Development',
-    description: 'Sensor Integration, Real-time Data Processing, Edge Computing',
-  },
-  {
-    name: 'Full Stack Development',
-    description: 'React, Node.js, Python, Cloud Architecture',
-  },
-  {
-    name: 'Data Engineering',
-    description: 'Big Data Analytics, ETL Pipelines, Data Visualization',
-  },
-];
-
 const projects = [
   {
     title: 'Weather Dashboard',
     description: 'Real-time weather tracking and forecasting application with detailed analytics',
     image: '/images/portfolio/weather.png',
-    technologies: ['React', 'OpenWeather API', 'D3.js'],
+    technologies: [
+      { name: 'React', type: 'frontend' },
+      { name: 'OpenWeather API', type: 'api' },
+      { name: 'Vite', type: 'tooling' },
+      { name: 'Node.js', type: 'backend' }
+    ],
     github: 'https://github.com/jrakestr/weather-dashboard',
     demo: '#',
   },
   {
-    title: 'AI Notes',
-    description: 'Smart note-taking application powered by AI for enhanced productivity',
+    title: 'README.md Generator',
+    description: 'The Bootcamp README Generator creates README.md files for GitHub, with easy installation and public use, licensed under MIT.',
     image: '/images/portfolio/readme.png',
-    technologies: ['React', 'OpenAI API', 'Node.js'],
+    technologies: [
+      { name: 'React', type: 'frontend' },
+      { name: 'OpenAI API', type: 'api' },
+      { name: 'Node.js', type: 'backend' }
+    ],
     github: 'https://github.com/jrakestr/ai-notes',
     demo: '#',
   },
@@ -42,7 +32,10 @@ const projects = [
     title: 'Vehicle Builder',
     description: 'Interactive vehicle configuration system with real-time 3D visualization',
     image: '/images/portfolio/vehicle.png',
-    technologies: ['Three.js', 'React', 'WebGL'],
+    technologies: [
+      { name: 'JavaScript', type: 'frontend' },
+      { name: 'CLI interface', type: 'tooling' }
+    ],
     github: 'https://github.com/jrakestr/vehicle-builder',
     demo: '#',
   },
@@ -50,7 +43,11 @@ const projects = [
     title: 'NFL Prediction App',
     description: 'AI-powered NFL game prediction platform using historical data analysis',
     image: '/images/portfolio/sports.png',
-    technologies: ['Python', 'TensorFlow', 'React'],
+    technologies: [
+      { name: 'JavaScript', type: 'frontend' },
+      { name: 'OpenAPI', type: 'api' },
+      { name: 'Akkio.com', type: 'external' }
+    ],
     github: 'https://github.com/jrakestr/nfl-prediction-app',
     demo: '#',
   },
@@ -58,15 +55,23 @@ const projects = [
     title: 'TransitTrends Analytics',
     description: 'Real-time transit data analytics platform for smart cities',
     image: '/images/portfolio/driverapp.png',
-    technologies: ['React', 'Node.js', 'MongoDB'],
+    technologies: [
+      { name: 'React', type: 'frontend' },
+      { name: 'Node.js', type: 'backend' },
+      { name: 'Supabase', type: 'database' }
+    ],
     github: '#',
     demo: '#',
   },
   {
-    title: 'Code Pastey',
-    description: 'Collaborative code sharing and debugging platform',
+    title: 'Pastey',
+    description: 'Copy and Paste tool with AI organization/tagging support',
     image: '/images/portfolio/pastey.png',
-    technologies: ['React', 'Node.js', 'Socket.io'],
+    technologies: [
+      { name: 'React', type: 'frontend' },
+      { name: 'Node.js', type: 'backend' },
+      { name: 'Socket.io', type: 'api' }
+    ],
     github: '#',
     demo: '#',
   },
@@ -103,13 +108,28 @@ const About = () => {
                 through innovative AI and IoT solutions. My expertise in data aggregation and real-time tracking systems 
                 helps create more efficient and accessible transportation networks.
               </p>
-              <div className="grid grid-cols-2 gap-4">
-                {skills.map((skill) => (
-                  <div key={skill.name} className="bg-slate-800/50 p-4 rounded-lg">
-                    <h3 className="font-semibold mb-2 text-emerald-400">{skill.name}</h3>
-                    <p className="text-sm text-gray-400">{skill.description}</p>
-                  </div>
-                ))}
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold mb-4">Technical Skills</h2>
+                
+                <div className="mb-6">
+                  <h3 className="text-xl font-semibold mb-2">Frontend Development</h3>
+                  <p className="text-gray-600">React, TypeScript, Tailwind CSS, Vite, JavaScript</p>
+                </div>
+                
+                <div className="mb-6">
+                  <h3 className="text-xl font-semibold mb-2">Backend Development</h3>
+                  <p className="text-gray-600">Node.js, RESTful APIs, Supabase, PostgreSQL, Express.js</p>
+                </div>
+                
+                <div className="mb-6">
+                  <h3 className="text-xl font-semibold mb-2">DevOps & Tools</h3>
+                  <p className="text-gray-600">Git, CI/CD, System Architecture, API Development</p>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-xl font-semibold mb-2">Data & Analytics</h3>
+                  <p className="text-gray-600">Data Aggregation, Predictive Analytics, Machine Learning APIs</p>
+                </div>
               </div>
             </div>
           </div>
@@ -132,8 +152,18 @@ const About = () => {
                   <p className="text-gray-400 mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech) => (
-                      <span key={tech} className="text-xs bg-emerald-400/10 text-emerald-400 px-2 py-1 rounded">
-                        {tech}
+                      <span 
+                        key={tech.name} 
+                        className={`text-xs px-2 py-1 rounded ${
+                          tech.type === 'frontend' ? 'bg-blue-400/10 text-blue-400' :
+                          tech.type === 'backend' ? 'bg-green-400/10 text-green-400' :
+                          tech.type === 'api' ? 'bg-purple-400/10 text-purple-400' :
+                          tech.type === 'database' ? 'bg-yellow-400/10 text-yellow-400' :
+                          tech.type === 'tooling' ? 'bg-pink-400/10 text-pink-400' :
+                          'bg-gray-400/10 text-gray-400'
+                        }`}
+                      >
+                        {tech.name}
                       </span>
                     ))}
                   </div>

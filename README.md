@@ -47,13 +47,41 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 ```
 class-portfolio/
 ├── public/
-│   ├── documents/     # PDFs and documents
-│   └── images/        # Image assets
+│   ├── documents/          # PDFs and documents
+│   │   ├── contactinfo.pdf
+│   │   └── resume.pdf
+│   └── images/
+│       ├── portfolio/      # Project screenshots
+│       │   ├── driverapp.png
+│       │   ├── pastey.png
+│       │   ├── readme.png
+│       │   ├── sports.png
+│       │   ├── vehicle.png
+│       │   └── weather.png
+│       └── profile/        # Profile images
+│           └── headshot.jpg
 ├── src/
-│   ├── components/    # Reusable UI components
-│   ├── pages/         # Page components
-│   └── main.tsx       # Application entry point
-└── package.json
+│   ├── components/         # Reusable UI components
+│   │   ├── ComingSoonPopup.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Header.tsx
+│   │   ├── Navigation.tsx
+│   │   └── Router.tsx
+│   ├── pages/             # Page components
+│   │   ├── About.tsx
+│   │   ├── Contact.tsx
+│   │   ├── Home.tsx
+│   │   └── Resume.tsx
+│   ├── App.tsx            # Main App component
+│   ├── main.tsx           # Application entry point
+│   ├── index.css          # Global styles
+│   └── vite-env.d.ts      # Vite environment types
+├── index.html             # HTML entry point
+├── package.json           # Project dependencies and scripts
+├── tsconfig.json          # TypeScript configuration
+├── tailwind.config.js     # Tailwind CSS configuration
+├── vite.config.ts         # Vite configuration
+└── postcss.config.js      # PostCSS configuration
 ```
 
 ## Deployment
