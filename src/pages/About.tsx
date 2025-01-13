@@ -5,72 +5,44 @@ import ComingSoonPopup from '../components/ComingSoonPopup';
 const projects = [
   {
     title: 'Weather Dashboard',
-    description: 'Real-time weather tracking and forecasting application with detailed analytics',
-    image: '/images/portfolio/weather.png',
-    technologies: [
-      { name: 'React', type: 'frontend' },
-      { name: 'OpenWeather API', type: 'api' },
-      { name: 'Vite', type: 'tooling' },
-      { name: 'Node.js', type: 'backend' }
-    ],
-    github: 'https://github.com/jrakestr/weather-dashboard',
-    demo: '#',
+    description: 'Interactive weather visualization app using modern React and Vite. Features real-time weather data and responsive design.',
+    tags: ['React', 'Vite', 'Node.js', 'OpenWeather API', 'Tailwind CSS'],
+    github: 'https://github.com/yourusername/weather-dashboard',
+    demo: 'https://weather-dashboard.netlify.app',
   },
   {
-    title: 'README.md Generator',
-    description: 'The Bootcamp README Generator creates README.md files for GitHub, with easy installation and public use, licensed under MIT.',
-    image: '/images/portfolio/readme.png',
-    technologies: [
-      { name: 'React', type: 'frontend' },
-      { name: 'OpenAI API', type: 'api' },
-      { name: 'Node.js', type: 'backend' }
-    ],
-    github: 'https://github.com/jrakestr/ai-notes',
-    demo: '#',
+    title: 'README Generator',
+    description: 'CLI tool that generates professional README files using AI. Streamlines documentation process for developers.',
+    tags: ['Node.js', 'OpenAI API', 'CLI', 'JavaScript'],
+    github: 'https://github.com/yourusername/readme-generator',
   },
   {
     title: 'Vehicle Builder',
-    description: 'Interactive vehicle configuration system with real-time 3D visualization',
-    image: '/images/portfolio/vehicle.png',
-    technologies: [
-      { name: 'JavaScript', type: 'frontend' },
-      { name: 'CLI interface', type: 'tooling' }
-    ],
-    github: 'https://github.com/jrakestr/vehicle-builder',
-    demo: '#',
+    description: 'Command-line interface for customizing vehicle configurations. Built with modern JavaScript and clean architecture.',
+    tags: ['JavaScript', 'Node.js', 'CLI', 'Clean Architecture'],
+    github: 'https://github.com/yourusername/vehicle-builder',
   },
   {
     title: 'NFL Prediction App',
-    description: 'AI-powered NFL game prediction platform using historical data analysis',
-    image: '/images/portfolio/sports.png',
-    technologies: [
-      { name: 'JavaScript', type: 'frontend' },
-      { name: 'OpenAPI', type: 'api' },
-      { name: 'Akkio.com', type: 'external' }
-    ],
-    github: 'https://github.com/jrakestr/nfl-prediction-app',
-    demo: '#',
+    description: 'Web application for predicting NFL game outcomes using historical data and analytics.',
+    tags: ['React', 'Node.js', 'Supabase', 'Analytics API'],
+    github: 'https://github.com/yourusername/nfl-predictions',
+    demo: 'https://nfl-predictions.netlify.app',
+  },
+  {
+    title: 'Pastey',
+    description: 'Modern code sharing platform with syntax highlighting and real-time collaboration features.',
+    tags: ['React', 'Node.js', 'Socket.io', 'Express'],
+    github: 'https://github.com/yourusername/pastey',
+    demo: 'https://pastey.netlify.app',
   },
   {
     title: 'TransitTrends Analytics',
     description: 'Real-time transit data analytics platform for smart cities',
-    image: '/images/portfolio/driverapp.png',
-    technologies: [
+    tags: [
       { name: 'React', type: 'frontend' },
       { name: 'Node.js', type: 'backend' },
       { name: 'Supabase', type: 'database' }
-    ],
-    github: '#',
-    demo: '#',
-  },
-  {
-    title: 'Pastey',
-    description: 'Copy and Paste tool with AI organization/tagging support',
-    image: '/images/portfolio/pastey.png',
-    technologies: [
-      { name: 'React', type: 'frontend' },
-      { name: 'Node.js', type: 'backend' },
-      { name: 'Socket.io', type: 'api' }
     ],
     github: '#',
     demo: '#',
@@ -146,24 +118,24 @@ const About = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
               <div key={project.title} className="bg-slate-900/50 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-transform">
-                <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
+                <img src={project.image || '/images/portfolio/default.png'} alt={project.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                   <p className="text-gray-400 mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
+                    {project.tags.map((tag) => (
                       <span 
-                        key={tech.name} 
+                        key={tag.name || tag} 
                         className={`text-xs px-2 py-1 rounded ${
-                          tech.type === 'frontend' ? 'bg-blue-400/10 text-blue-400' :
-                          tech.type === 'backend' ? 'bg-green-400/10 text-green-400' :
-                          tech.type === 'api' ? 'bg-purple-400/10 text-purple-400' :
-                          tech.type === 'database' ? 'bg-yellow-400/10 text-yellow-400' :
-                          tech.type === 'tooling' ? 'bg-pink-400/10 text-pink-400' :
+                          tag.type === 'frontend' ? 'bg-blue-400/10 text-blue-400' :
+                          tag.type === 'backend' ? 'bg-green-400/10 text-green-400' :
+                          tag.type === 'api' ? 'bg-purple-400/10 text-purple-400' :
+                          tag.type === 'database' ? 'bg-yellow-400/10 text-yellow-400' :
+                          tag.type === 'tooling' ? 'bg-pink-400/10 text-pink-400' :
                           'bg-gray-400/10 text-gray-400'
                         }`}
                       >
-                        {tech.name}
+                        {tag.name || tag}
                       </span>
                     ))}
                   </div>
@@ -175,10 +147,10 @@ const About = () => {
                       </a>
                     )}
                     <a 
-                      href={project.demo} 
+                      href={project.demo || '#'} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      onClick={(e) => handleDemoClick(e, project.demo)}
+                      onClick={(e) => handleDemoClick(e, project.demo || '#')}
                       className="text-gray-300 hover:text-emerald-400 transition-colors"
                     >
                       <ExternalLink className="w-5 h-5" />

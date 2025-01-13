@@ -9,6 +9,7 @@ const Resume = () => {
       'Tailwind CSS',
       'JavaScript',
       'Vite',
+      'Responsive Design',
     ],
     'Backend Development': [
       'Node.js',
@@ -16,20 +17,20 @@ const Resume = () => {
       'Supabase',
       'PostgreSQL',
       'Express.js',
+      'API Design',
     ],
     'AI & Machine Learning': [
-      'TensorFlow',
-      'PyTorch',
-      'Natural Language Processing',
       'Machine Learning APIs',
       'Predictive Analytics',
-    ],
-    'IoT & Infrastructure': [
-      'Sensor Integration',
       'Data Aggregation',
-      'API Development',
+      'Analytics Integration',
+    ],
+    'DevOps & Tools': [
+      'Git/GitHub',
+      'CI/CD',
       'System Architecture',
-      'DevOps',
+      'Netlify',
+      'Version Control',
     ],
   };
 
