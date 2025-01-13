@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import { Github, ExternalLink } from 'lucide-react';
 import ComingSoonPopup from '../components/ComingSoonPopup';
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  github: string;
+  demo?: string;
+}
+
+const projects: Project[] = [
   {
     title: 'Weather Dashboard',
     description: 'Interactive weather visualization app using modern React and Vite. Features real-time weather data and responsive design.',
@@ -39,11 +47,7 @@ const projects = [
   {
     title: 'TransitTrends Analytics',
     description: 'Real-time transit data analytics platform for smart cities',
-    tags: [
-      { name: 'React', type: 'frontend' },
-      { name: 'Node.js', type: 'backend' },
-      { name: 'Supabase', type: 'database' }
-    ],
+    tags: ['React', 'Node.js', 'Supabase'],
     github: '#',
     demo: '#',
   },
@@ -118,24 +122,23 @@ const About = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
               <div key={project.title} className="bg-slate-900/50 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-transform">
-                <img src={project.image || '/images/portfolio/default.png'} alt={project.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                   <p className="text-gray-400 mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag) => (
                       <span 
-                        key={tag.name || tag} 
+                        key={tag} 
                         className={`text-xs px-2 py-1 rounded ${
-                          tag.type === 'frontend' ? 'bg-blue-400/10 text-blue-400' :
-                          tag.type === 'backend' ? 'bg-green-400/10 text-green-400' :
-                          tag.type === 'api' ? 'bg-purple-400/10 text-purple-400' :
-                          tag.type === 'database' ? 'bg-yellow-400/10 text-yellow-400' :
-                          tag.type === 'tooling' ? 'bg-pink-400/10 text-pink-400' :
+                          tag.includes('React') || tag.includes('JavaScript') || tag.includes('TypeScript') ? 'bg-blue-400/10 text-blue-400' :
+                          tag.includes('Node') || tag.includes('Express') ? 'bg-green-400/10 text-green-400' :
+                          tag.includes('API') ? 'bg-purple-400/10 text-purple-400' :
+                          tag.includes('Supabase') || tag.includes('PostgreSQL') ? 'bg-yellow-400/10 text-yellow-400' :
+                          tag.includes('Vite') || tag.includes('CLI') ? 'bg-pink-400/10 text-pink-400' :
                           'bg-gray-400/10 text-gray-400'
                         }`}
                       >
-                        {tag.name || tag}
+                        {tag}
                       </span>
                     ))}
                   </div>

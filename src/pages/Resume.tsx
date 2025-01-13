@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileText } from 'lucide-react';
+import { FileText, Contact } from 'lucide-react';
 
 const Resume = () => {
   const proficiencies = {
@@ -43,15 +43,25 @@ const Resume = () => {
           </span>
         </h2>
         
-        <div className="mb-12 text-center">
-          <a
-            href="/documents/resume.pdf"
-            download
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-400 to-emerald-400 text-white font-medium rounded-lg hover:opacity-90 transition-all transform hover:scale-105"
-          >
-            <FileText className="mr-2 w-5 h-5" />
-            Download Resume
-          </a>
+        <div className="mb-12 text-center space-y-4">
+          <div className="flex justify-center gap-4">
+            <a
+              href="/documents/resume.pdf"
+              download
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-400 to-emerald-400 text-white font-medium rounded-lg hover:opacity-90 transition-all transform hover:scale-105"
+            >
+              <FileText className="mr-2 w-5 h-5" />
+              Download Resume
+            </a>
+            <a
+              href="/documents/contactinfo.pdf"
+              download
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-400 to-pink-400 text-white font-medium rounded-lg hover:opacity-90 transition-all transform hover:scale-105 shadow-lg"
+            >
+              <Contact className="mr-2 w-5 h-5" />
+              Business Card
+            </a>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
