@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Github, ExternalLink } from 'lucide-react';
 import ComingSoonPopup from '../components/ComingSoonPopup';
+import { theme } from '../styles/theme';
 
 interface Project {
   title: string;
@@ -13,19 +14,20 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: 'Weather Dashboard',
-    description: 'Interactive weather visualization app using modern React and Vite. Features real-time weather data and responsive design.',
-    tags: ['React', 'Vite', 'Node.js', 'OpenWeather API', 'Tailwind CSS'],
-    github: 'https://github.com/yourusername/weather-dashboard',
-    demo: 'https://weather-dashboard.netlify.app',
-    image: '/images/portfolio/weather.png'
+    title: 'TransitCentral.io',
+    description: 'The first platform built specifically for transit technology professionals, delivering actionable data through smart analytics and detailed agency insights.',
+    tags: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'PostgreSQL'],
+    github: '#',
+    demo: 'https://www.transitcentral.io',
+    image: '/images/portfolio/transitcentral.png'
   },
   {
-    title: 'README Generator',
-    description: 'CLI tool that generates professional README files using AI. Streamlines documentation process for developers.',
-    tags: ['Node.js', 'OpenAI API', 'CLI', 'JavaScript'],
-    github: 'https://github.com/yourusername/readme-generator',
-    image: '/images/portfolio/readme.png'
+    title: 'Revamp of DemandTrans.com Landing Page',
+    description: 'DemandTrans Solutions is a technology solutions provider, in business for 30 years, with a distinctive blend of technology platform development and transportation planning/consulting capabilities.',
+    tags: ['MongoDB', 'Express', 'React', 'Next.js', 'Payload CMS'],
+    github: '#',
+    demo: '#',
+    image: '/images/portfolio/demandtrans-logo.png'
   },
   {
     title: 'Vehicle Builder',
@@ -35,30 +37,29 @@ const projects: Project[] = [
     image: '/images/portfolio/vehicle.png'
   },
   {
-    title: 'NFL Prediction App',
-    description: 'Web application for predicting NFL game outcomes using historical data and analytics.',
-    tags: ['React', 'Node.js', 'Supabase', 'Analytics API'],
-    github: 'https://github.com/yourusername/nfl-predictions',
-    demo: 'https://nfl-predictions.netlify.app',
-    image: '/images/portfolio/sports.png'
+    title: 'Canban Board',
+    description: 'A full-stack Kanban board application built with React, TypeScript, and Express. Features include user authentication, ticket management, and real-time updates.',
+    tags: ['MongoDB', 'Express', 'React', 'Node.js'],
+    github: 'https://github.com/jrakestr/canban_board',
+    demo: 'https://canban-board-4f2z.onrender.com/',
+    image: '/images/portfolio/weather.png'
   },
   {
-    title: 'Pastey',
-    description: 'Modern code sharing platform with syntax highlighting and real-time collaboration features.',
-    tags: ['React', 'Node.js', 'Socket.io', 'Express'],
-    github: 'https://github.com/yourusername/pastey',
-    demo: 'https://pastey.netlify.app',
-    image: '/images/portfolio/pastey.png'
+    title: 'Bootstacks',
+    description: 'The NFL Game Day Weather Tracker allows a user to see the weather forecast for a given NFL game. When a user logs in, the NFL season schedule is shown with the details for each game including date, teams playing, location, and weather data if available.',
+    tags: ['Node.js', 'Express', 'PostgreSQL', 'Sequelize', 'JWT', 'Rapid API'],
+    github: 'https://github.com/kagreene/bootstacks',
+    image: '/images/portfolio/bootstacks.jpg'
   },
   {
-    title: 'TransitTrends Analytics',
-    description: 'Real-time transit data analytics platform for smart cities',
-    tags: ['React', 'Node.js', 'Supabase'],
-    github: '#',
-    demo: '#',
-    image: '/images/portfolio/driverapp.png'
-  },
-];
+    title: 'Propfolio - Real Estate Portfolio Manager',
+    description: 'Propfolio is a web application designed for independent property owners who need an intuitive and efficient tool to track and manage their real estate investments.',
+    tags: ['MongoDB', 'Express', 'React', 'Node.js'],
+    github: 'https://github.com/realejandro/propfolio',
+    demo: 'https://real-state-portfolio.onrender.com',
+    image: '/images/portfolio/propfolio.png'
+  }
+]
 
 const About = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -72,10 +73,10 @@ const About = () => {
 
   return (
     <>
-      <section id="about" className="py-20 px-4">
+      <section id="about" className={`${theme.components.section} ${theme.colors.sectionBg.about}`}>
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
+            <span className={theme.components.gradientText}>
               About Me
             </span>
           </h2>
@@ -91,20 +92,20 @@ const About = () => {
                 through innovative AI and IoT solutions. My expertise in data aggregation and real-time tracking systems 
                 helps create more efficient and accessible transportation networks.
               </p>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-slate-800/50 p-4 rounded-lg">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                <div className={`${theme.components.card} p-4`}>
                   <h3 className="font-semibold mb-2 text-emerald-400">AI & Machine Learning</h3>
                   <p className="text-sm text-gray-400">TensorFlow, PyTorch, Natural Language Processing</p>
                 </div>
-                <div className="bg-slate-800/50 p-4 rounded-lg">
+                <div className={`${theme.components.card} p-4`}>
                   <h3 className="font-semibold mb-2 text-emerald-400">IoT Development</h3>
                   <p className="text-sm text-gray-400">Sensor Integration, Real-time Data Processing, Edge Computing</p>
                 </div>
-                <div className="bg-slate-800/50 p-4 rounded-lg">
+                <div className={`${theme.components.card} p-4`}>
                   <h3 className="font-semibold mb-2 text-emerald-400">Full Stack Development</h3>
                   <p className="text-sm text-gray-400">React, Node.js, Python, Cloud Architecture</p>
                 </div>
-                <div className="bg-slate-800/50 p-4 rounded-lg">
+                <div className={`${theme.components.card} p-4`}>
                   <h3 className="font-semibold mb-2 text-emerald-400">Data Engineering</h3>
                   <p className="text-sm text-gray-400">Big Data Analytics, ETL Pipelines, Data Visualization</p>
                 </div>
@@ -114,16 +115,16 @@ const About = () => {
         </div>
       </section>
 
-      <section id="portfolio" className="py-20 px-4 bg-slate-800/30">
+      <section id="portfolio" className={`${theme.components.section} ${theme.colors.sectionBg.portfolio}`}>
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
+            <span className={theme.components.gradientText}>
               Featured Projects
             </span>
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
-              <div key={project.title} className="bg-slate-900/50 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-transform">
+              <div key={project.title} className={`${theme.components.card} overflow-hidden hover:transform hover:scale-105 transition-transform`}>
                 <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
@@ -133,9 +134,14 @@ const About = () => {
                       <span 
                         key={tag} 
                         className={`text-xs px-2 py-1 rounded ${
-                          tag.includes('React') || tag.includes('JavaScript') || tag.includes('TypeScript') ? 'bg-blue-400/10 text-blue-400' :
+                          tag.includes('React') || tag.includes('JavaScript') ? 'bg-blue-400/10 text-blue-400' :
+                          tag.includes('TypeScript') ? 'bg-blue-600/10 text-blue-500' :
                           tag.includes('Node') || tag.includes('Express') ? 'bg-green-400/10 text-green-400' :
                           tag.includes('API') ? 'bg-purple-400/10 text-purple-400' :
+                          tag.includes('Tailwind') ? 'bg-sky-400/10 text-sky-400' :
+                          tag.includes('MongoDB') ? 'bg-emerald-400/10 text-emerald-400' :
+                          tag.includes('Payload') ? 'bg-indigo-400/10 text-indigo-400' :
+                          tag.includes('Next') ? 'bg-slate-400/10 text-white' :
                           tag.includes('Supabase') || tag.includes('PostgreSQL') ? 'bg-yellow-400/10 text-yellow-400' :
                           tag.includes('Vite') || tag.includes('CLI') ? 'bg-pink-400/10 text-pink-400' :
                           'bg-gray-400/10 text-gray-400'

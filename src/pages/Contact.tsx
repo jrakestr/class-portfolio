@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { Mail, Send } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { theme } from '../styles/theme';
+import { supabase } from '../lib/supabase';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -7,18 +9,56 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+    
+    try {
+      // Insert into Supabase table
+      const { error } = await supabase
+        .from('contact_messages')
+        .insert([
+          { 
+            name: formData.name,
+            email: formData.email,
+            message: formData.message
+          }
+        ]);
+      
+      if (error) throw error;
+      
+      // Success
+      setSubmitStatus({
+        type: 'success',
+        message: 'Thank you for your message! I\'ll get back to you soon.'
+      });
+      
+      // Clear form
+      setFormData({ name: '', email: '', message: '' });
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: 'There was an error sending your message. Please try again.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section id="contact" className="py-20 px-4">
+    <section id="contact" className={theme.components.section}>
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-4xl font-bold mb-8 text-center">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
+        <h2 className={theme.components.heading}>
+          <span className={theme.components.gradientText}>
             Let's Work Together
           </span>
         </h2>
@@ -27,7 +67,20 @@ const Contact = () => {
           If you're interested in working together, feel free to reach out!
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className={`space-y-6 ${theme.components.card} p-8`}>
+          {submitStatus.type && (
+            <div className={`p-4 rounded-lg flex items-start ${
+              submitStatus.type === 'success' 
+                ? 'bg-emerald-900/20 text-emerald-400 border border-emerald-900/30' 
+                : 'bg-red-900/20 text-red-400 border border-red-900/30'
+            }`}>
+              {submitStatus.type === 'success' 
+                ? <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" /> 
+                : <AlertCircle className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" />
+              }
+              <span>{submitStatus.message}</span>
+            </div>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label htmlFor="name" className="block text-sm font-medium text-gray-300">
@@ -38,7 +91,7 @@ const Contact = () => {
                 id="name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all"
+                className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all shadow-xl"
                 required
               />
             </div>
@@ -51,7 +104,7 @@ const Contact = () => {
                 id="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all"
+                className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all shadow-xl"
                 required
               />
             </div>
@@ -65,16 +118,17 @@ const Contact = () => {
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               rows={6}
-              className="w-full px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all"
+              className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all shadow-xl"
               required
             ></textarea>
           </div>
           <div className="flex justify-center">
             <button
               type="submit"
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-400 to-emerald-400 text-white font-medium rounded-lg hover:opacity-90 transition-all transform hover:scale-105"
+              disabled={isSubmitting}
+              className={`${theme.components.button} hover:opacity-90 transform hover:scale-105 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
-              Send Message
+              {isSubmitting ? 'Sending...' : 'Send Message'}
               <Send className="ml-2 w-5 h-5" />
             </button>
           </div>

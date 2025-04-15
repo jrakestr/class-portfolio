@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { FileText } from 'lucide-react';
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('');
   
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'portfolio', 'contact', 'resume'];
+      const sections = ['about', 'contact', 'resume'];
       const scrollPosition = window.scrollY + window.innerHeight / 2;
 
       for (const section of sections) {
@@ -31,7 +30,7 @@ const Navigation = () => {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const sections = ['About Me', 'Portfolio', 'Contact', 'Resume'];
+  const sections = ['About Me', 'Featured Projects', 'Contact', 'Resume'];
 
   return (
     <div className="hidden md:flex items-center space-x-8">

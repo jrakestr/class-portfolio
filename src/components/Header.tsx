@@ -5,13 +5,25 @@ import Navigation from './Navigation';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const scrollToSection = (section: string) => {
@@ -26,9 +38,22 @@ const Header = () => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-between items-center">
-          <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
-            Justin Rakestraw
-          </div>
+          <a href="#" className="flex items-center group">
+            {isScrolled || isMobile ? (
+              <img 
+                src="/images/portfolio/favicon.png" 
+                alt="Justin Rakestraw" 
+                className="h-10 w-10 transition-all duration-300 group-hover:opacity-90" 
+              />
+            ) : (
+              <img 
+                src="/images/portfolio/logo.png" 
+                alt="Justin Rakestraw" 
+                className="h-12 sm:h-14 w-auto transition-all duration-300 group-hover:opacity-90" 
+                style={{ maxWidth: '180px', objectFit: 'contain' }}
+              />
+            )}
+          </a>
 
           <Navigation />
 
@@ -63,7 +88,7 @@ const Header = () => {
         isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
       } overflow-hidden bg-slate-900/95 backdrop-blur-sm`}>
         <div className="px-4 py-4 space-y-4">
-          {['About Me', 'Portfolio', 'Contact', 'Resume'].map((section) => (
+          {['About Me', 'Transport Tech', 'Contact', 'Resume'].map((section) => (
             <button
               key={section}
               onClick={() => scrollToSection(section)}
