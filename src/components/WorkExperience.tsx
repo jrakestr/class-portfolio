@@ -13,28 +13,28 @@ const WorkExperience = () => {
     {
       company: 'Transit Trends, Inc.',
       title: 'CEO',
-      logo: '/images/companies/transittrends.png',
+      logo: '/images/portfolio/favicon.png',
       startYear: '2024',
       endYear: 'Present'
     },
     {
       company: 'Beacon Mobility',
       title: 'Vice President of Commercial Development, Transit',
-      logo: '/images/companies/beacon.png',
+      logo: '/images/portfolio/beacon.png',
       startYear: '2022',
       endYear: '2024'
     },
     {
       company: 'SCR Medical Transportation, LLC.',
       title: 'Vice President Of Operations',
-      logo: '/images/companies/scr.png',
+      logo: '/images/portfolio/Beacon_SCR_logo.png',
       startYear: '2021',
       endYear: '2022'
     },
     {
       company: 'SCR Medical Transportation, Inc.',
       title: 'Various Roles',
-      logo: '/images/companies/scr.png',
+      logo: '/images/portfolio/scr.png',
       startYear: '2004',
       endYear: '2021'
     }
