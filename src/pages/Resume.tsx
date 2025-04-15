@@ -1,5 +1,6 @@
-import React from 'react';
 import { FileText, Contact } from 'lucide-react';
+import WorkExperience from '../components/WorkExperience';
+import { theme } from '../styles/theme';
 
 const Resume = () => {
   const proficiencies = {
@@ -35,10 +36,10 @@ const Resume = () => {
   };
 
   return (
-    <section id="resume" className="py-20 px-4">
+    <section id="resume" className={theme.components.section}>
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-center">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
+        <h2 className={theme.components.heading}>
+          <span className={theme.components.gradientText}>
             Resume
           </span>
         </h2>
@@ -48,7 +49,7 @@ const Resume = () => {
             <a
               href="/documents/resume.pdf"
               download
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-400 to-emerald-400 text-white font-medium rounded-lg hover:opacity-90 transition-all transform hover:scale-105"
+              className={`${theme.components.button} hover:opacity-90`}
             >
               <FileText className="mr-2 w-5 h-5" />
               Download Resume
@@ -64,20 +65,38 @@ const Resume = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {Object.entries(proficiencies).map(([category, skills]) => (
-            <div key={category} className="bg-slate-800/50 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4 text-emerald-400">{category}</h3>
-              <ul className="space-y-2">
-                {skills.map((skill) => (
-                  <li key={skill} className="text-gray-300 flex items-center">
-                    <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2"></span>
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold mb-6 text-center">
+            <span className={theme.components.gradientText}>
+              Technical Skills
+            </span>
+          </h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            {Object.entries(proficiencies).map(([category, skills]) => (
+              <div key={category} className={`${theme.components.card} p-6`}>
+                <h3 className="text-xl font-semibold mb-4 text-emerald-400">{category}</h3>
+                <ul className="space-y-2">
+                  {skills.map((skill) => (
+                    <li key={skill} className="text-gray-300 flex items-center">
+                      <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2"></span>
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold mb-6 text-center">
+            <span className={theme.components.gradientText}>
+              Professional Experience
+            </span>
+          </h3>
+          <div className="w-full max-w-3xl mx-auto">
+            <WorkExperience />
+          </div>
         </div>
       </div>
     </section>
